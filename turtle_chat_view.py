@@ -1,18 +1,35 @@
 #2016-2017 PERSONAL PROJECTS: TurtleChat!
 #WRITE YOUR NAME HERE!
-
 #####################################################################################
 #                                   IMPORTS                                         #
 #####################################################################################
-#import the turtle module
+import turtle 
 #import the Client class from the turtle_chat_client module
+from turtle_chat_client import Client
 #Finally, from the turtle_chat_widgets module, import two classes: Button and TextInput
+from turtle_chat_widgets import Button
+from turtle_chat_widgets import TextInput
 #####################################################################################
 #####################################################################################
 
 #####################################################################################
 #                                   TextBox                                         #
 #####################################################################################
+class TextBox(TextInput):
+    def draw_box(self):
+        turtle.goto (50,50)
+        turtle.pendown()
+        turtle.goto(100,50)
+        turtle.goto (100,10)
+        turtle.goto(50,10)
+        turtle.goto(50,50)
+    def write_msg(self):
+        self.writer.clear()
+        self.writer.write(self.new_msg)
+        
+        
+    
+
 #Make a class called TextBox, which will be a subclass of TextInput.
 #Because TextInput is an abstract class, you must implement its abstract
 #methods.  There are two:
@@ -41,6 +58,14 @@
 #####################################################################################
 #                                  SendButton                                       #
 #####################################################################################
+class SendButton(Button):
+    def fun(self,x=None,y=None):
+        self.view.send_msg()
+    def __init__(self,view):
+        self.view = view
+        super(SendButton,self).__init__()
+        
+    
 #Make a class called SendButton, which will be a subclass of Button.
 #Button is an abstract class with one abstract method: fun.
 #fun gets called whenever the button is clicked.  It's jobs will be to
